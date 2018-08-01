@@ -1,0 +1,11 @@
+오늘은 JSP 2번째 시간
+
+1. JSP 주요 요소(지시자, 스크립트릿, 표현식)
+
+2. 지시자 ( page, include, taglib)
+
+3. 내장변수(request, response, out, session, application 등등 9가지)
+	범위와 관련된 내장객체 (page < request < session < application)
+	=> setAttribute, getAttribute
+	
+4. Dispatcher, Redirect 차이점 비교

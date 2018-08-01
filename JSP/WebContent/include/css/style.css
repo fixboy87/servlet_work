@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+#imageSection {
+	width : 90%;
+	height : 20%;
+}
+
+#imageSection>#image {
+	width : 90%;
+	height : 90%;
+	background-repeat: none;
+	background-position: center;
+}
+
+#menuSection {
+	width : 30%;
+	height : 40%;
+	float : right;
+}
+
+#menu {
+	
+}
+
+#pageSection {
+	width : 60%;
+	height : 40%;
+}
+
+#first {
+	width : 30%;
+	height : 25%;
+	display : inline;
+	float: left;
+}
+
+#second {
+	width : 30%;
+	height : 25%;
+	display : inline;
+}
+
+#third {
+	width : 30%;
+	height: 25%;
+	display : inline;
+	float: right;
+}

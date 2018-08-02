@@ -91,6 +91,6 @@ public class Board implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Board [writer=" + writer + ", title=" + title + ", contents=" + contents + "]";
+		return "Board [writer=" + writer + ", title=" + title + ", contents=" + contents + ", seq=" + seq + "]";
 	}
 }

@@ -1,5 +1,5 @@
 <%@page import="kosta.bean.Board"%>
-<%@page import="kosta.bean.BoardDao"%>
+<%@page import="kosta.bean.BoardDao2"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -8,7 +8,7 @@
 	if(str != null) {
 		seq = Integer.parseInt(str);
 	}
-	BoardDao dao = new BoardDao();
+	BoardDao2 dao = new BoardDao2();
 	Board board = dao.getBoard(seq);
 	
 %>
@@ -36,8 +36,8 @@
 </style>
 </head>
 <body>
-	<h3>글목록보기</h3>
-	<a href="list.jsp">돌아가기</a>
+	<h3>수정하기</h3>
+	<a href="updateForm.jsp?seq=<%=board.getSeq()%>">수정</a>
 	<table>
 		<tr>
 			<th>번호</th>

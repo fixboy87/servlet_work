@@ -53,8 +53,8 @@ public class BoardDao2 {
 		List<Board> list = null;
 		
 		try {
-			list = sqlSession.getMapper(BoardMapper.class).listBoard();
-			
+//			list = sqlSession.getMapper(BoardMapper.class).listBoard();
+			list = sqlSession.selectList("kosta.mapper.BoardMapper.listBoard");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -62,5 +62,41 @@ public class BoardDao2 {
 		}
 		
 		return list;
+	}
+	
+	public Board getBoard(int seq) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		Board board = new Board();
+		
+		try {
+			board = sqlSession.selectOne("kosta.mapper.BoardMapper.getBoard", seq);
+			//board = sqlSession.getMapper(BoardMapper.class).getBoard(seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return board;
+	}
+	
+	public int updateBoard(Board board) {
+		int re = 0;
+		
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			re = sqlSession.getMapper(BoardMapper.class).updateBoard(board);
+			//re = sqlSession.selectOne("kosta.mapper.BoardMapper.updateBoard", board);
+			if(re > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return re;
 	}
 }

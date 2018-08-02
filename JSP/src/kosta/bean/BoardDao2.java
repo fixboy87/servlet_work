@@ -99,4 +99,24 @@ public class BoardDao2 {
 		}
 		return re;
 	}
+	
+	public int deleteBoard(int seq) {
+		int re = 0;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			re = sqlSession.getMapper(BoardMapper.class).deleteBoard(seq);
+			
+			if(re > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return re;
+	}
 }

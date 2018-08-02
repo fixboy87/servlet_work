@@ -38,6 +38,7 @@
 <body>
 	<h3>수정하기</h3>
 	<a href="updateForm.jsp?seq=<%=board.getSeq()%>">수정</a>
+	<a href="deleteAction.jsp?seq=<%=board.getSeq()%>">삭제</a>
 	<table>
 		<tr>
 			<th>번호</th>

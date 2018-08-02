@@ -29,6 +29,11 @@
 			contents = #{contents}
 			where seq = #{seq}
 	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from board
+			where seq = #{seq}
+	</delete>
 </mapper>
 
 

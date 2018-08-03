@@ -48,13 +48,13 @@ public class BoardDao2 {
 		return re;
 	}
 	
-	public List<Board> listBoard() {
+	public List<Board> listBoard(Search search) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		List<Board> list = null;
 		
 		try {
-//			list = sqlSession.getMapper(BoardMapper.class).listBoard();
-			list = sqlSession.selectList("kosta.mapper.BoardMapper.listBoard");
+			list = sqlSession.getMapper(BoardMapper.class).listBoard(search);
+			//list = sqlSession.selectList("kosta.mapper.BoardMapper.listBoard");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

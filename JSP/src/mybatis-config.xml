@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="kosta.bean.Board" alias = "Board"/>
+		<typeAlias type="kosta.bean.Search" alias = "Search"/>
 	</typeAliases>
 	
 	<environments default="development">

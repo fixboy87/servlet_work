@@ -1,3 +1,4 @@
+<%@page import="kosta.bean.Search"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="kosta.bean.BoardDao2"%>
@@ -6,8 +7,16 @@
     pageEncoding="UTF-8"%>
 <%! List<Board> list = new ArrayList<Board>(); %>
 <%
+	request.setCharacterEncoding("utf-8");
+
+	Search search = new Search();
+	search.setArea(request.getParameterValues("area"));
+	search.setSearchKey("%" +request.getParameter("searchKey") + "%");
+	
+	
+	
 	BoardDao2 dao = BoardDao2.getInstance(); //4. dao객체를 호출하여 값이 넘어갔는지 확인
-	list = dao.listBoard();
+	list = dao.listBoard(search);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -69,6 +78,14 @@
 			}
 			%>					
 		</tbody>
+		
 	</table>
+
+		<form action= "list.jsp" method="post">
+			<input type="checkbox" name="area" value="title">제목 
+			<input type="checkbox" name="area" value="writer">작성자
+			<input type="text" name="searchKey" value="title"></input>
+			<input type="submit" value="등록" >
+		</form>
 </body>
 </html>

@@ -11,7 +11,7 @@
 	BoardDao2 dao = BoardDao2.getInstance();
 	int re = dao.deleteBoard(seq);
 	
-	if(re==1) {
+	if(re == 1) {
 		response.sendRedirect("list.jsp");
 	}
 %>

@@ -14,7 +14,7 @@
 	if(m_id.equals(id) && m_pass.equals(pass)) {
 		session.setAttribute("name", m_name);
 		
-		response.sendRedirect("main.jsp");
+		response.sendRedirect("main/main.jsp");
 	} else response.sendRedirect("loginForm.jsp");
 	
 %>    

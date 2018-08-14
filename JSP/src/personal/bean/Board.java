@@ -1,4 +1,4 @@
-package kosta.bean;
+package personal.bean;
 
 import java.io.Serializable;
 
@@ -12,15 +12,13 @@ public class Board implements Serializable{
 	private String regdate;
 	private int hitcount;
 	//VO 객체 / DTO 객체 - 계층간 데이터 교환을 위한 객체
-	private String fname;
+	
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
 	
-
-
-	public Board(String writer, String title, String contents, int seq, String regdate, int hitcount, String fname) {
+	public Board(String writer, String title, String contents, int seq, String regdate, int hitcount) {
 		super();
 		this.writer = writer;
 		this.title = title;
@@ -28,20 +26,7 @@ public class Board implements Serializable{
 		this.seq = seq;
 		this.regdate = regdate;
 		this.hitcount = hitcount;
-		this.fname = fname;
 	}
-
-
-	public String getFname() {
-		return fname;
-	}
-
-
-
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-
 
 
 	public String getWriter() {

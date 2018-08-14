@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -48,12 +49,12 @@ public class BoardDao2 {
 		return re;
 	}
 	
-	public List<Board> listBoard(Search search) {
+	public List<Board> listBoard(Search search, int startRow) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		List<Board> list = null;
 		
 		try {
-			list = sqlSession.getMapper(BoardMapper.class).listBoard(search);
+			list = sqlSession.getMapper(BoardMapper.class).listBoard(new RowBounds(startRow, 2), search);
 			//list = sqlSession.selectList("kosta.mapper.BoardMapper.listBoard");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,8 +70,8 @@ public class BoardDao2 {
 		Board board = new Board();
 		
 		try {
-			board = sqlSession.selectOne("kosta.mapper.BoardMapper.getBoard", seq);
-			//board = sqlSession.getMapper(BoardMapper.class).getBoard(seq);
+			//board = sqlSession.selectOne("kosta.mapper.BoardMapper.getBoard", seq);
+			board = sqlSession.getMapper(BoardMapper.class).getBoard(seq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -119,4 +120,45 @@ public class BoardDao2 {
 		}
 		return re;
 	}
+	
+	public int countBoard(Search search) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = 0;
+		
+		try {
+			//board = sqlSession.selectOne("kosta.mapper.BoardMapper.getBoard", seq);
+			re = sqlSession.getMapper(BoardMapper.class).countBoard(search);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return re;
+	}
+	
+	public Recomment getRecomment(int seq) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		Recomment recomment = new Recomment();
+		
+		try {
+			recomment = sqlSession.getMapper(BoardMapper.class).getRecomment(seq);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return recomment;
+	}
+	
+	/*public  insertRecomment(int seq) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		Recomment recomment = new Recomment();
+		
+		try {
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return recomment;
+	}*/
 }

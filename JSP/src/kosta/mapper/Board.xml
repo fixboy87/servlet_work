@@ -9,9 +9,9 @@
 	
 	<insert id="insertBoard" parameterType="Board">
 		insert into board(
-			seq, title, writer, contents, regdate, hitcount
+			seq, title, writer, contents, regdate, hitcount, fname
 		) values (
-			board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0
+			board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0, #{fname}
 		)
 	</insert>
 	
@@ -43,6 +43,24 @@
 		delete from board
 			where seq = #{seq}
 	</delete>
+	
+	<select id="countBoard" resultType="int" parameterType="Search">
+		select count(*) from board
+		<if test="area != null">
+			<where>
+				<!-- title LIKE %aa% OR writer LIKE %aa% -->
+				<foreach collection="area" item="item" separator="OR" open="(" close=")">
+					${item} LIKE #{searchKey}
+					<!-- # vs $ : 리터럴 형식으로 미리 선언을 완료해 두는 상태 -->
+				</foreach>
+			</where>
+		</if>
+	</select>
+	
+	<select id="getRecomment" resultType="Recomment" parameterType="int">
+		select * from recomment
+			where seq = #{seq}
+	</select>
 </mapper>
 
 

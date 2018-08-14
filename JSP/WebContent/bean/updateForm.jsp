@@ -10,6 +10,7 @@
 	}
 	BoardDao2 dao = BoardDao2.getInstance();
 	Board board = dao.getBoard(seq);
+	request.setAttribute("bd", board);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,10 +21,10 @@
 <body>
 	<form action="updateAction.jsp" method="post">
 		<dl>
-			<dt><input name="seq" value=<%=board.getSeq() %> type="hidden"></dt>
-			<dt>제목 : <input name="title" value=<%=board.getTitle() %>></dt>
-			<dt>글쓴이 : <%=board.getWriter() %></dt>
-			<dt>내용 : <textarea name="contents"><%=board.getContents() %></textarea></dt>
+			<dt><input name="seq" value="${bd.seq}"<%-- <%=board.getSeq() %> --%> type="hidden"></dt>
+			<dt>제목 : <input name="title" value="${bd.title}"<%-- <%=board.getTitle() %> --%>></dt>
+			<dt>글쓴이 : "${bd.writer}"<%-- <%=board.getWriter() %> --%></dt>
+			<dt>내용 : <textarea name="contents">"${bd.contents}<%-- <%=board.getContents() %> --%></textarea></dt>
 		</dl>
 		<input type="submit" value="수정완료">
 	</form>
